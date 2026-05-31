@@ -3,7 +3,7 @@
 
 cmake_minimum_required(VERSION 3.22)
 
-project(mpd-kontrol VERSION 1.0.0)
+project(mpd-klient VERSION 1.0.0)
 
 include(FeatureSummary)
 
@@ -32,8 +32,8 @@ if (NOT ANDROID)
 endif()
 
 ecm_setup_version(${PROJECT_VERSION}
-    VARIABLE_PREFIX MPD_KONTROL
-    VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/src/version-mpd-kontrol.h"
+    VARIABLE_PREFIX MPD_KLIENT
+    VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/src/version-mpd-klient.h"
 )
 
 set(QT_EXTRA_COMPONENTS)
@@ -50,13 +50,17 @@ set_package_properties(KF6KirigamiAddons PROPERTIES
     PURPOSE "Required application components and runtime dependency"
 )
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBMPDCLIENT REQUIRED IMPORTED_TARGET GLOBAL libmpdclient>=2.23)
+
+
 ecm_find_qmlmodule(org.kde.kirigamiaddons.formcard)
 ecm_find_qmlmodule(org.kde.kirigamiaddons.statefulapp)
 
 add_subdirectory(src)
 
-install(FILES org.kde.mpd-kontrol.desktop DESTINATION ${KDE_INSTALL_APPDIR})
-install(FILES org.kde.mpd-kontrol.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+install(FILES com.github.pamugk.mpd-klient.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+install(FILES com.github.pamugk.mpd-klient.metainfo.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 ki18n_install(po)
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

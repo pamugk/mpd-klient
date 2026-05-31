@@ -191,55 +191,34 @@ Kirigami.OverlayDrawer {
                 width: scrollView.width
                 PlaceItem {
                     id: goHomeButton
-                    text: i18nc("Switch to the listing page showing the most recently read books", "Home");
+                    text: i18nc("Switch to the listing page showing recent search results and library genres", "Home");
                     icon.name: "go-home";
                     checked: true
                     QQC2.ButtonGroup.group: placeGroup
                 }
-                PlaceItem {
-                    text: i18nc("Switch to the listing page showing the most recently discovered books", "Recently Added Books")
-                    icon.name: "appointment-new";
-                    QQC2.ButtonGroup.group: placeGroup
-                }
-                PlaceItem {
-                    text: i18nc("Open a book from somewhere on disk (uses the open dialog, or a drilldown on touch devices)", "Open Other...")
-                    icon.name: "document-open";
-                    QQC2.ButtonGroup.group: null
-                    checkable: false
-                }
-
-                PlaceItem {
-                    text: i18nc("Open the settings page", "Settings")
-                    icon.name: "configure"
-                    action: Kirigami.Action {
-                        fromQAction: application.action('options_configure')
-                    }
-                    QQC2.ButtonGroup.group: placeGroup
-                    checkable: false
-                    Layout.bottomMargin: Kirigami.Units.smallSpacing / 2
-                }
 
                 Kirigami.ListSectionHeader {
-                    text: i18nc("Heading for switching to listing page showing items grouped by some properties", "Group By")
+                    text: i18nc("Heading for switching to listing page showing items grouped by some properties", "Media Library");
+                    icon.name: "library-music-symbolic";
                 }
                 PlaceItem {
-                    text: i18nc("Switch to the listing page showing items grouped by author", "Author");
-                    icon.name: "actor";
+                    text: i18nc("Switch to the listing page showing recently added tracks", "Recently Added");
+                    icon.name: "accept_time_event-symbloic";
                     QQC2.ButtonGroup.group: placeGroup
                 }
                 PlaceItem {
-                    text: i18nc("Switch to the listing page showing items grouped by series", "Series");
-                    icon.name: "edit-group";
+                    text: i18nc("Switch to the listing page showing artists discography", "Artists");
+                    icon.name: "actor-symbolic";
                     QQC2.ButtonGroup.group: placeGroup
                 }
                 PlaceItem {
-                    text: i18nc("Switch to the listing page showing items grouped by publisher", "Publisher");
-                    icon.name: "view-media-publisher";
+                    text: i18nc("Switch to the listing page showing albums", "Albums");
+                    icon.name: "media-album-cover-symbolic";
                     QQC2.ButtonGroup.group: placeGroup
                 }
                 PlaceItem {
-                    text: i18nc("Switch to the listing page showing items grouped by genres", "Keywords");
-                    icon.name: "tag";
+                    text: i18nc("Switch to the listing page showing songs", "Songs");
+                    icon.name: "media-album-track-symbolic";
                     QQC2.ButtonGroup.group: placeGroup
                 }
             }

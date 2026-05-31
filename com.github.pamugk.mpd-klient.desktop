@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: CC0-1.0
+# SPDX-FileCopyrightText: %{CURRENT_YEAR} %{AUTHOR} <%{EMAIL}>
+[Desktop Entry]
+Name=MPD Klient
+Comment=MPD client build with Kirigami
+Version=1.0
+Exec=mpd-klient
+Icon=applications-development
+Type=Application
+Terminal=false
+Categories=Qt;KDE;Audio;AudioVideo
+Keywords=MPD

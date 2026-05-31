@@ -11,7 +11,7 @@ Kirigami.ScrollablePage {
 
     property var libraryModel
 
-    title: i18nc("@title", "Library")
+    title: i18nc("@title", "Media Library")
 
     GridView {
         id: contentDirectoryView
@@ -44,15 +44,15 @@ Kirigami.ScrollablePage {
             width: Kirigami.Settings.isMobile ? contentDirectoryView.cellWidth : 170
             height: contentDirectoryView.cellHeight
 
-            fallBackIconName: 'application-epub+zip';
+            fallBackIconName: 'media-audio';
         }
 
         Kirigami.PlaceholderMessage {
             anchors.centerIn: parent
             width: parent.width - (Kirigami.Units.largeSpacing * 4)
             visible: contentDirectoryView.count === 0
-            icon.name: "application-epub+zip"
-            text: i18nc("@info placeholder", "Add some books")
+            icon.name: "media-audio"
+            text: i18nc("@info placeholder", "No songs found")
         }
     }
 }

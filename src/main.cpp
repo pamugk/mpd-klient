@@ -14,13 +14,14 @@
 #include <QQuickStyle>
 #include <QUrl>
 
-#include "version-mpd-kontrol.h"
+#include "version-mpd-klient.h"
 #include <KAboutData>
 #include <KIconTheme>
 #include <KLocalizedQmlContext>
 #include <KLocalizedString>
 
-#include "mpd-kontrolconfig.h"
+#include "mpdclient.h"
+#include "mpdklientconfig.h"
 
 #ifdef Q_OS_WINDOWS
 #include <Windows.h>
@@ -59,16 +60,16 @@ int main(int argc, char *argv[])
     app.setFont(font);
 #endif
 
-    KLocalizedString::setApplicationDomain("mpd-kontrol");
+    KLocalizedString::setApplicationDomain("mpd-klient");
     QCoreApplication::setOrganizationName(u"KDE"_s);
 
     KAboutData aboutData(
         // The program name used internally.
-        u"mpd-kontrol"_s,
+        u"mpd-klient"_s,
         // A displayable program name string.
-        i18nc("@title", "mpd-kontrol"),
+        i18nc("@title", "MPD Klient"),
         // The program version string.
-        QStringLiteral(MPD_KONTROL_VERSION_STRING),
+        QStringLiteral(MPD_KLIENT_VERSION_STRING),
         // Short description of what the app does.
         i18n("Application Description"),
         // The license this code is released under.
@@ -81,20 +82,22 @@ int main(int argc, char *argv[])
                         u"https://yourwebsite.com"_s);
     aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"), i18nc("EMAIL OF TRANSLATORS", "Your emails"));
     KAboutData::setApplicationData(aboutData);
-    QGuiApplication::setWindowIcon(QIcon::fromTheme(u"org.kde.mpd-kontrol"_s));
+    QGuiApplication::setWindowIcon(QIcon::fromTheme(u"com.github.pamugk.mpd-klient"_s));
 
     QQmlApplicationEngine engine;
 
-    auto config = mpd-kontrolConfig::self();
+    auto config = MPDKlientConfig::self();
 
-    qmlRegisterSingletonInstance("org.kde.mpd-kontrol.private", 1, 0, "Config", config);
+    qmlRegisterSingletonInstance("com.github.pamugk.mpdklient.private", 1, 0, "Config", config);
 
     KLocalization::setupLocalizedContext(&engine);
-    engine.loadFromModule("org.kde.mpd-kontrol", u"Main"_s);
+    engine.loadFromModule("com.github.pamugk.mpdklient", u"Main"_s);
 
     if (engine.rootObjects().isEmpty()) {
         return -1;
     }
+
+    MpdClient mpdClient;
 
     return app.exec();
 }

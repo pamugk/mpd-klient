@@ -3,28 +3,30 @@
 
 add_subdirectory(settings)
 
-qt_add_library(mpd-kontrol_static STATIC)
-ecm_add_qml_module(mpd-kontrol_static
-    URI org.kde.mpd-kontrol
+qt_add_library(mpd-klient_static STATIC)
+ecm_add_qml_module(mpd-klient_static
+    URI com.github.pamugk.mpdklient
     GENERATE_PLUGIN_SOURCE
     QML_FILES
         qml/Main.qml
-        qml/LibraryPage.qml
+        qml/MediaLibraryPage.qml
         qml/GridBrowserDelegate.qml
         qml/Sidebar.qml
     DEPENDENCIES
         org.kde.kirigamiaddons.formcard
         org.kde.kirigamiaddons.statefulapp
         org.kde.kirigami
-        org.kde.mpd-kontrol.settings
+        com.github.pamugk.mpd_klient.settings
 )
 
-target_sources(mpd-kontrol_static PRIVATE
-    mpd-kontrolapplication.cpp
-    mpd-kontrolapplication.h
+target_sources(mpd-klient_static PRIVATE
+    mpdclient.cpp
+    mpdclient.h
+    mpdklientapplication.cpp
+    mpdklientapplication.h
 )
 
-target_link_libraries(mpd-kontrol_static PUBLIC
+target_link_libraries(mpd-klient_static PUBLIC
     Qt6::Core
     Qt6::Gui
     Qt6::Qml
@@ -39,7 +41,11 @@ target_link_libraries(mpd-kontrol_static PUBLIC
     KF6::ConfigGui
     KirigamiAddonsStatefulApp
 )
-target_include_directories(mpd-kontrol_static PUBLIC ${CMAKE_BINARY_DIR})
+target_link_libraries(mpd-klient_static PRIVATE PkgConfig::LIBMPDCLIENT)
+target_include_directories(mpd-klient_static
+    PUBLIC ${CMAKE_BINARY_DIR}
+    PRIVATE ${LIBMPDCLIENT_INCLUDE_DIRECTORIES}
+)
 
 if (ANDROID)
     kirigami_package_breeze_icons(ICONS
@@ -49,17 +55,17 @@ if (ANDROID)
         applications-graphics
     )
 else()
-    target_link_libraries(mpd-kontrol_static PUBLIC Qt::Widgets)
+    target_link_libraries(mpd-klient_static PUBLIC Qt::Widgets)
 endif()
 
-kconfig_add_kcfg_files(mpd-kontrol_static GENERATE_MOC mpd-kontrolconfig.kcfgc)
+kconfig_add_kcfg_files(mpd-klient_static GENERATE_MOC mpdklientconfig.kcfgc)
 
-add_executable(mpd-kontrol main.cpp)
-target_link_libraries(mpd-kontrol PUBLIC
-    mpd-kontrol_static
-    mpd-kontrol_staticplugin
-    mpd-kontrol_settings
-    mpd-kontrol_settingsplugin
+add_executable(mpd-klient main.cpp)
+target_link_libraries(mpd-klient PUBLIC
+    mpd-klient_static
+    mpd-klient_staticplugin
+    mpd-klient_settings
+    mpd-klient_settingsplugin
 )
-install(TARGETS mpd-kontrol ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-ecm_add_android_apk(mpd-kontrol ANDROID_DIR ${CMAKE_SOURCE_DIR}/android)
+install(TARGETS mpd-klient ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+ecm_add_android_apk(mpd-klient ANDROID_DIR ${CMAKE_SOURCE_DIR}/android)

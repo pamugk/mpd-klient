@@ -1,9 +1,9 @@
 {
-    "id": "org.kde.mpd-kontrol",
+    "id": "com.github.pamugk.mpd-klient",
     "runtime": "org.kde.Platform",
     "runtime-version": "6.8",
     "sdk": "org.kde.Sdk",
-    "command": "mpd-kontrol",
+    "command": "mpd-klient",
     "tags": ["nightly"],
     "desktop-file-name-suffix": " (Nightly)",
     "finish-args": [
@@ -32,7 +32,7 @@
             ]
         },
         {
-            "name": "mpd-kontrol",
+            "name": "mpd-klient",
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "sources": [ { "type": "dir", "path": ".", "skip": [".git"] } ]

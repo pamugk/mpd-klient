@@ -3,18 +3,18 @@
 
 #pragma once
 
-#include <QQmlEngine>
 #include <AbstractKirigamiApplication>
+#include <QQmlEngine>
 
 using namespace Qt::StringLiterals;
 
-class mpd-kontrolApplication : public AbstractKirigamiApplication
+class MPDKlientApplication : public AbstractKirigamiApplication
 {
     Q_OBJECT
     QML_ELEMENT
 
 public:
-    explicit mpd-kontrolApplication(QObject *parent = nullptr);
+    explicit MPDKlientApplication(QObject *parent = nullptr);
 
 Q_SIGNALS:
     void incrementCounter();

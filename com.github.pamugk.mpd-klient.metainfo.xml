@@ -4,8 +4,8 @@
   SPDX-FileCopyrightText: %{CURRENT_YEAR} %{AUTHOR} <%{EMAIL}>
  -->
 <component type="desktop-application">
-  <id>org.kde.mpd-kontrol</id>
-  <name>mpd-kontrol Kirigami Application</name>
+  <id>com.github.pamugk.mpd-klient</id>
+  <name>MPD Klient Kirigami Application</name>
   <summary>A short summary describing what this software is about</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>The license of this software as SPDX string, e.g. "GPL-2.0-or-later"</project_license>
